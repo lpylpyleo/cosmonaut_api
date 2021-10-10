@@ -1,0 +1,33 @@
+# HTTP Server
+[server]
+	Address     = ":8199"
+	ServerRoot  = "public"
+	ServerAgent = "gf-app"
+	LogPath     = "/tmp/log/gf-app/server"
+
+# Logger.
+[logger]
+    Path        = "/tmp/log/gf-app"
+    Level       = "all"
+    Stdout      = true
+
+# Template.
+[viewer]
+    Path        = "template"
+    DefaultFile = "index.html"
+    Delimiters  =  ["{{", "}}"]
+
+# Database.
+[database]
+    link  = "pgsql: user=postgres password=qwe123 host=127.0.0.1 port=5432 dbname=postgres sslmode=disable"
+    debug = true
+    # Database logger.
+    [database.logger]
+        Path   = "/tmp/log/gf-app/sql"
+        Level  = "all"
+        Stdout = true
+
+[gfcli]
+    [[gfcli.gen.dao]]
+        link   = "pgsql: user=postgres password=qwe123 host=127.0.0.1 port=5432 dbname=postgres sslmode=disable"
+        tables = ""

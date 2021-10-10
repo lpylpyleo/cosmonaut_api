@@ -1,0 +1,18 @@
+POST http://localhost:8199/api/v1/user/sign-up
+Content-Type: application/json
+
+{
+  "Email":"Spike2@gmail.com",
+  "Password":"123456",
+  "Password2":"123456"
+}
+
+
+<> 2021-10-10T173105.200.json
+<> 2021-10-10T173057.200.json
+<> 2021-10-10T172646.200.json
+<> 2021-10-10T172608.200.json
+<> 2021-10-10T172515.200.json
+<> 2021-10-10T171934.500.txt
+
+
