@@ -1,29 +1,26 @@
 create table "user"
 (
     id        uuid
-        default gen_random_uuid('cosmonaut')
+                            default gen_random_uuid()
         constraint user_pkey
             primary key,
-    email  varchar(45) null,
-    phone  varchar(45) null,
+    email  varchar(20) null,
+    phone  varchar(20) null,
     role  varchar(10) null,
     disabled  bool not null default false,
-    password  varchar(45) not null,
-    create_at timestamptz,
-    update_at timestamptz,
+    password  varchar(20) not null,
+    create_at timestamptz default now(),
+    update_at timestamptz default now()
 );
 
 comment
 on column "user".id is '用户ID';
 
 comment
-on column "user".passport is '用户账号';
+on column "user".email is '用户账号';
 
 comment
 on column "user".password is '用户密码';
-
-comment
-on column "user".nickname is '用户昵称';
 
 comment
 on column "user".create_at is '创建时间';
