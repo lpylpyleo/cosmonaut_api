@@ -8,6 +8,6 @@ end;
 $$ language plpgsql;
 
 create trigger set_timestamp
-    before update on "user"
+    before update on "profile"
     for each row
 execute procedure trigger_set_timestamp();

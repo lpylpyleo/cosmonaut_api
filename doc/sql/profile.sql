@@ -4,8 +4,8 @@ create table "profile"
     uid uuid null,
     avatar varchar(127) null,
     nickname varchar(20) null,
-    create_at timestamptz,
-    update_at timestamptz,
+    create_at timestamptz default now(),
+    update_at timestamptz default now(),
     foreign key (uid) references public."user"(id)
 );
 
