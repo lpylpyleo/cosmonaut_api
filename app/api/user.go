@@ -3,7 +3,7 @@ package api
 import (
 	"cosmonaut_api/app/model"
 	"cosmonaut_api/app/service"
-	response "cosmonaut_api/library"
+	"cosmonaut_api/library/response"
 	"github.com/gogf/gf/net/ghttp"
 	"github.com/gogf/gf/util/gconv"
 )
