@@ -8,6 +8,16 @@ import (
 	"github.com/gogf/gf/os/gtime"
 )
 
+// Profile is the golang structure for table profile.
+type Profile struct {
+	Id       int64       `orm:"id"        json:"id"`       //
+	Uid      string      `orm:"uid"       json:"uid"`      //
+	Avatar   string      `orm:"avatar"    json:"avatar"`   //
+	Nickname string      `orm:"nickname"  json:"nickname"` //
+	CreateAt *gtime.Time `orm:"create_at" json:"createAt"` //
+	UpdateAt *gtime.Time `orm:"update_at" json:"updateAt"` //
+}
+
 // User is the golang structure for table user.
 type User struct {
 	Id       string      `orm:"id"        json:"id"`       //
