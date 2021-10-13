@@ -20,23 +20,25 @@ type ProfileDao struct {
 
 // ProfileColumns defines and stores column names for table profile.
 type profileColumns struct {
-	Id       string //
-	Uid      string //
-	Avatar   string //
-	Nickname string //
-	CreateAt string //
-	UpdateAt string //
+	Id        string //
+	Uid       string //
+	Avatar    string //
+	Nickname  string //
+	CreatedAt string //
+	UpdatedAt string //
+	DeletedAt string //
 }
 
 // NewProfileDao creates and returns a new DAO object for table data access.
 func NewProfileDao() *ProfileDao {
 	columns := profileColumns{
-		Id:       "id",
-		Uid:      "uid",
-		Avatar:   "avatar",
-		Nickname: "nickname",
-		CreateAt: "create_at",
-		UpdateAt: "update_at",
+		Id:        "id",
+		Uid:       "uid",
+		Avatar:    "avatar",
+		Nickname:  "nickname",
+		CreatedAt: "created_at",
+		UpdatedAt: "updated_at",
+		DeletedAt: "deleted_at",
 	}
 	return &ProfileDao{
 		C:     columns,

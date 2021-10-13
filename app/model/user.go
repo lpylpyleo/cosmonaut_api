@@ -4,7 +4,6 @@ package model
 type UserApiSignUpReq struct {
 	Email    string `v:"required|email#账号不能为空|账号应为合法email"`
 	Password string `v:"required#请输入确认密码"`
-	//Password2 string `v:"required|length:6,16|same:Password#密码不能为空|密码长度应当在:min到:max之间|两次密码输入不相等"`
 	Nickname string `v:"length:6,20"`
 }
 

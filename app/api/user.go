@@ -60,5 +60,6 @@ func (a userApi) SignIn(r *ghttp.Request) {
 		r.Response.Status = http.StatusUnauthorized
 		response.JsonExit(r, 1500, err.Error())
 	}
-	response.JsonExit(r, 0, "ok")
+	//response.JsonExit(r, 0, "ok")
+	r.Exit()
 }

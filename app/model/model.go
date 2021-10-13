@@ -8,24 +8,39 @@ import (
 	"github.com/gogf/gf/os/gtime"
 )
 
+// Poster is the golang structure for table poster.
+type Poster struct {
+	Id        int64       `orm:"id"         json:"id"`        //
+	Poster    string      `orm:"poster"     json:"poster"`    //
+	Title     string      `orm:"title"      json:"title"`     //
+	Content   string      `orm:"content"    json:"content"`   //
+	Deleted   bool        `orm:"deleted"    json:"deleted"`   //
+	CreatedAt *gtime.Time `orm:"created_at" json:"createdAt"` //
+	UpdatedAt *gtime.Time `orm:"updated_at" json:"updatedAt"` //
+	DeletedAt *gtime.Time `orm:"deleted_at" json:"deletedAt"` //
+}
+
 // Profile is the golang structure for table profile.
 type Profile struct {
-	Id       int64       `orm:"id"        json:"id"`       //
-	Uid      string      `orm:"uid"       json:"uid"`      //
-	Avatar   string      `orm:"avatar"    json:"avatar"`   //
-	Nickname string      `orm:"nickname"  json:"nickname"` //
-	CreateAt *gtime.Time `orm:"create_at" json:"createAt"` //
-	UpdateAt *gtime.Time `orm:"update_at" json:"updateAt"` //
+	Id        int64       `orm:"id"         json:"id"`        //
+	Uid       string      `orm:"uid"        json:"uid"`       //
+	Avatar    string      `orm:"avatar"     json:"avatar"`    //
+	Nickname  string      `orm:"nickname"   json:"nickname"`  //
+	CreatedAt *gtime.Time `orm:"created_at" json:"createdAt"` //
+	UpdatedAt *gtime.Time `orm:"updated_at" json:"updatedAt"` //
+	DeletedAt *gtime.Time `orm:"deleted_at" json:"deletedAt"` //
 }
 
 // User is the golang structure for table user.
 type User struct {
-	Id       string      `orm:"id"        json:"id"`       //
-	Email    string      `orm:"email"     json:"email"`    //
-	Phone    string      `orm:"phone"     json:"phone"`    //
-	Role     string      `orm:"role"      json:"role"`     //
-	Disabled bool        `orm:"disabled"  json:"disabled"` //
-	Password string      `orm:"password"  json:"password"` //
-	CreateAt *gtime.Time `orm:"create_at" json:"createAt"` //
-	UpdateAt *gtime.Time `orm:"update_at" json:"updateAt"` //
+	Id        string      `orm:"id"         json:"id"`        //
+	Account   string      `orm:"account"    json:"account"`   //
+	Email     string      `orm:"email"      json:"email"`     //
+	Phone     string      `orm:"phone"      json:"phone"`     //
+	Role      string      `orm:"role"       json:"role"`      //
+	Disabled  bool        `orm:"disabled"   json:"disabled"`  //
+	Password  string      `orm:"password"   json:"password"`  //
+	CreatedAt *gtime.Time `orm:"created_at" json:"createdAt"` //
+	UpdatedAt *gtime.Time `orm:"updated_at" json:"updatedAt"` //
+	DeletedAt *gtime.Time `orm:"deleted_at" json:"deletedAt"` //
 }

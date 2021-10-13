@@ -40,10 +40,16 @@ func (s *userService) SignIn(ctx context.Context, email, password string) error 
 	if err := Session.SetUser(ctx, &model.UserProfile{User: user, Profile: profile}); err != nil {
 		return err
 	}
+
+	nickname := ""
+	if profile != nil {
+		nickname = profile.Nickname
+	}
+
 	Context.SetUser(ctx, &model.ContextUser{
 		Id:          user.Id,
 		Email:       user.Email,
-		DisplayName: profile.Nickname,
+		DisplayName: nickname,
 	})
 	return nil
 }

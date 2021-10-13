@@ -20,27 +20,31 @@ type UserDao struct {
 
 // UserColumns defines and stores column names for table user.
 type userColumns struct {
-	Id       string //
-	Email    string //
-	Phone    string //
-	Role     string //
-	Disabled string //
-	Password string //
-	CreateAt string //
-	UpdateAt string //
+	Id        string //
+	Account   string //
+	Email     string //
+	Phone     string //
+	Role      string //
+	Disabled  string //
+	Password  string //
+	CreatedAt string //
+	UpdatedAt string //
+	DeletedAt string //
 }
 
 // NewUserDao creates and returns a new DAO object for table data access.
 func NewUserDao() *UserDao {
 	columns := userColumns{
-		Id:       "id",
-		Email:    "email",
-		Phone:    "phone",
-		Role:     "role",
-		Disabled: "disabled",
-		Password: "password",
-		CreateAt: "create_at",
-		UpdateAt: "update_at",
+		Id:        "id",
+		Account:   "account",
+		Email:     "email",
+		Phone:     "phone",
+		Role:      "role",
+		Disabled:  "disabled",
+		Password:  "password",
+		CreatedAt: "created_at",
+		UpdatedAt: "updated_at",
+		DeletedAt: "deleted_at",
 	}
 	return &UserDao{
 		C:     columns,
