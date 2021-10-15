@@ -1,6 +1,7 @@
 package test
 
 import (
+	"cosmonaut_api/library/email"
 	"cosmonaut_api/library/util"
 	"testing"
 )
@@ -32,4 +33,12 @@ func TestGenUid(t *testing.T) {
 		result := util.GenUid()
 		t.Log(result)
 	}
+}
+
+func TestSendEmail(t *testing.T) {
+	err := email.SendMail("1240622309@qq.com", "go-test", "reached")
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log("success")
 }
