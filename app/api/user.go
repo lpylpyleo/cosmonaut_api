@@ -8,6 +8,7 @@ import (
 	"github.com/gogf/gf/net/ghttp"
 	"github.com/gogf/gf/util/gconv"
 	"net/http"
+	"strings"
 )
 
 var User = userApi{}
@@ -32,11 +33,11 @@ func (a userApi) SignUp(r *ghttp.Request) {
 	//}
 	serviceReq = &model.UserServiceSignUpReq{
 		Id:       util.GenUid(),
-		Email:    apiReq.Email,
+		Email:    strings.TrimSpace(apiReq.Email),
 		Password: util.GetSha256Digest(apiReq.Password),
 	}
 	if err := service.User.SignUp(serviceReq); err != nil {
-		r.Response.Status = 409
+		r.Response.Status = http.StatusConflict
 		response.JsonExit(r, 1, err.Error())
 	} else {
 		response.JsonExit(r, 0, "ok")
@@ -60,6 +61,5 @@ func (a userApi) SignIn(r *ghttp.Request) {
 		r.Response.Status = http.StatusUnauthorized
 		response.JsonExit(r, 1500, err.Error())
 	}
-	//response.JsonExit(r, 0, "ok")
 	r.Exit()
 }

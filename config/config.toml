@@ -16,6 +16,8 @@
     Path        = "template"
     DefaultFile = "index.html"
     Delimiters  =  ["{{", "}}"]
+    [viewer.confirm_sign_up]
+        defaultFile = "email/confirm_sign_up.html"
 
 # Database.
 [database]

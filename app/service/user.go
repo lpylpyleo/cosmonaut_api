@@ -4,9 +4,11 @@ import (
 	"context"
 	"cosmonaut_api/app/dao"
 	"cosmonaut_api/app/model"
+	"cosmonaut_api/library/email"
 	"cosmonaut_api/library/util"
 	"errors"
 	"fmt"
+	"github.com/gogf/gf/frame/g"
 )
 
 var User = userService{}
@@ -18,7 +20,10 @@ func (s userService) SignUp(r *model.UserServiceSignUpReq) error {
 		return fmt.Errorf("账号 %s 已经存在", r.Email)
 	}
 	_, err := dao.User.Insert(r)
-	return err
+	if err != nil {
+		return err
+	}
+	return s.sendMail(r.Email)
 }
 
 // SignIn 用户登录，成功返回用户信息，否则返回nil; passport应当会md5值字符串
@@ -64,4 +69,13 @@ func (s userService) CheckEmail(email string) bool {
 	} else {
 		return i == 0
 	}
+}
+
+func (s userService) sendMail(to string) error {
+	view := g.View("confirm_sign_up")
+	result, err := view.Parse(context.TODO(), view.GetDefaultFile())
+	if err != nil {
+		return err
+	}
+	return email.SendMail(to, "Confirm your sign up", result)
 }

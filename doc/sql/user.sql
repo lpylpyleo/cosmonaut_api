@@ -2,7 +2,7 @@ create table if not exists "user"
 (
     id varchar(8) not null unique primary key,
     account  varchar(20) null,
-    email  varchar(20) null,
+    email  varchar(50) null,
     phone  varchar(20) null,
     role  varchar(10) null,
     disabled  bool not null default false,
