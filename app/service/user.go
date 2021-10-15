@@ -9,6 +9,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/gogf/gf/frame/g"
+	"github.com/gogf/gf/os/glog"
 )
 
 var User = userService{}
@@ -77,5 +78,6 @@ func (s userService) sendMail(to string) error {
 	if err != nil {
 		return err
 	}
+	glog.Debug(result)
 	return email.SendMail(to, "Confirm your sign up", result)
 }
