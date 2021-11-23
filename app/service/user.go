@@ -9,7 +9,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/gogf/gf/frame/g"
-	"github.com/gogf/gf/os/glog"
 )
 
 var User = userService{}
@@ -43,7 +42,7 @@ func (s *userService) SignIn(ctx context.Context, email, password string) error 
 		return errors.New(err.Error())
 	}
 
-	if err := Session.SetUser(ctx, &model.UserProfile{User: user, Profile: profile}); err != nil {
+	if err := Session.SetUser(ctx, user); err != nil {
 		return err
 	}
 
@@ -57,6 +56,14 @@ func (s *userService) SignIn(ctx context.Context, email, password string) error 
 		Email:       user.Email,
 		DisplayName: nickname,
 	})
+	return nil
+}
+
+func (s *userService) SignOut(ctx context.Context) error {
+	if err := Session.SetUser(ctx, nil); err != nil {
+		return err
+	}
+	Context.SetUser(ctx, nil)
 	return nil
 }
 
@@ -78,6 +85,6 @@ func (s userService) sendMail(to string) error {
 	if err != nil {
 		return err
 	}
-	glog.Debug(result)
+	// glog.Debug(result)
 	return email.SendMail(to, "Confirm your sign up", result)
 }

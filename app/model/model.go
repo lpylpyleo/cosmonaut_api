@@ -8,12 +8,24 @@ import (
 	"github.com/gogf/gf/os/gtime"
 )
 
-// Poster is the golang structure for table poster.
-type Poster struct {
+// EmailConfirm is the golang structure for table email_confirm.
+type EmailConfirm struct {
+	Id          int64       `orm:"id"           json:"id"`          //
+	Uid         string      `orm:"uid"          json:"uid"`         //
+	Email       string      `orm:"email"        json:"email"`       //
+	Token       string      `orm:"token"        json:"token"`       //
+	ConfirmedAt *gtime.Time `orm:"confirmed_at" json:"confirmedAt"` //
+	CreatedAt   *gtime.Time `orm:"created_at"   json:"createdAt"`   //
+	UpdatedAt   *gtime.Time `orm:"updated_at"   json:"updatedAt"`   //
+}
+
+// Post is the golang structure for table post.
+type Post struct {
 	Id        int64       `orm:"id"         json:"id"`        //
-	Poster    string      `orm:"poster"     json:"poster"`    //
+	Creater   string      `orm:"creater"    json:"creater"`   //
 	Title     string      `orm:"title"      json:"title"`     //
 	Content   string      `orm:"content"    json:"content"`   //
+	IsPublic  bool        `orm:"is_public"  json:"isPublic"`  //
 	Deleted   bool        `orm:"deleted"    json:"deleted"`   //
 	CreatedAt *gtime.Time `orm:"created_at" json:"createdAt"` //
 	UpdatedAt *gtime.Time `orm:"updated_at" json:"updatedAt"` //

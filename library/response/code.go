@@ -1,0 +1,8 @@
+package response
+
+const (
+	CODE_UNKNOWN          = 10001
+	CODE_PARSE_FORM_ERROR = 10100
+	CODE_USER_NOT_EXIST   = 10401
+	CODE_FORBIDDEN        = 10403
+)

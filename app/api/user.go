@@ -26,11 +26,8 @@ func (a userApi) SignUp(r *ghttp.Request) {
 	)
 
 	if err := r.ParseForm(&apiReq); err != nil {
-		response.JsonExit(r, 1, err.Error())
+		response.JsonExit(r, response.CODE_PARSE_FORM_ERROR, err.Error())
 	}
-	//if err := gconv.Struct(apiReq, &serviceReq); err != nil {
-	//	response.JsonExit(r, 1, err.Error())
-	//}
 	serviceReq = &model.UserServiceSignUpReq{
 		Id:       util.GenUid(),
 		Email:    strings.TrimSpace(apiReq.Email),
@@ -38,10 +35,10 @@ func (a userApi) SignUp(r *ghttp.Request) {
 	}
 	if err := service.User.SignUp(serviceReq); err != nil {
 		r.Response.Status = http.StatusConflict
-		response.JsonExit(r, 1, err.Error())
-	} else {
-		response.JsonExit(r, 0, "ok")
+		response.JsonExit(r, response.CODE_UNKNOWN, err.Error())
 	}
+
+	r.Exit()
 }
 
 func (a userApi) SignIn(r *ghttp.Request) {
@@ -51,15 +48,21 @@ func (a userApi) SignIn(r *ghttp.Request) {
 	)
 	if err := r.ParseForm(&apiReq); err != nil {
 		r.Response.Status = http.StatusBadRequest
-		response.JsonExit(r, 1400, err.Error())
+		response.JsonExit(r, response.CODE_PARSE_FORM_ERROR, err.Error())
 	}
 	if err := gconv.Struct(apiReq, &serviceReq); err != nil {
 		r.Response.Status = http.StatusInternalServerError
-		response.JsonExit(r, 1500, err.Error())
+		response.JsonExit(r, response.CODE_UNKNOWN, err.Error())
 	}
 	if err := service.User.SignIn(r.Context(), serviceReq.Email, serviceReq.Password); err != nil {
-		r.Response.Status = http.StatusUnauthorized
-		response.JsonExit(r, 1500, err.Error())
+		response.JsonExit(r, response.CODE_UNKNOWN, err.Error())
+	}
+	r.Exit()
+}
+
+func (a userApi) SignOut(r *ghttp.Request) {
+	if err := service.User.SignOut(r.Context()); err != nil {
+		response.JsonExit(r, response.CODE_UNKNOWN, err.Error())
 	}
 	r.Exit()
 }

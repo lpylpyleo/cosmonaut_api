@@ -16,5 +16,4 @@ comment on column "email_confirm".email is '用户邮箱';
 comment on column "email_confirm".token is '一次性token';
 comment on column "email_confirm".confirmed_at is '确认时间';
 
-alter table "email_confirm"
-    owner to postgres;
+alter table "email_confirm" owner to postgres;

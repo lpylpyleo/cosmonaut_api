@@ -18,9 +18,9 @@ func (s middlewareService) Ctx(r *ghttp.Request) {
 	Context.Init(r, customContext)
 	if user := Session.GetUser(r.Context()); user != nil {
 		customContext.User = &model.ContextUser{
-			Id:          user.Uid,
+			Id:          user.Id,
 			Email:       user.Email,
-			DisplayName: user.Email,
+			DisplayName: user.Account,
 		}
 	}
 	r.Middleware.Next()

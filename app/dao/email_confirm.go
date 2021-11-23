@@ -8,20 +8,20 @@ import (
 	"cosmonaut_api/app/dao/internal"
 )
 
-// posterDao is the manager for logic model data accessing and custom defined data operations functions management.
+// emailConfirmDao is the manager for logic model data accessing and custom defined data operations functions management.
 // You can define custom methods on it to extend its functionality as you wish.
-type posterDao struct {
-	*internal.PosterDao
+type emailConfirmDao struct {
+	*internal.EmailConfirmDao
 }
 
 var (
-	// Poster is globally public accessible object for table poster operations.
-	Poster posterDao
+	// EmailConfirm is globally public accessible object for table email_confirm operations.
+	EmailConfirm emailConfirmDao
 )
 
 func init() {
-	Poster = posterDao{
-		internal.NewPosterDao(),
+	EmailConfirm = emailConfirmDao{
+		internal.NewEmailConfirmDao(),
 	}
 }
 

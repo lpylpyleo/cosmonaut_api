@@ -15,6 +15,5 @@ comment on column "profile".uid is '用户uuid';
 comment on column "profile".avatar is '头像url';
 comment on column "profile".nickname is '昵称';
 
-alter table "profile"
-    owner to postgres;
+alter table "profile" owner to postgres;
 

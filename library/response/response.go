@@ -13,16 +13,8 @@ type JsonResponse struct {
 }
 
 // 标准返回结果数据结构封装。
-func Json(r *ghttp.Request, code int, message string, data ...interface{}) {
-	responseData := interface{}(nil)
-	if len(data) > 0 {
-		responseData = data[0]
-	}
-	err := r.Response.WriteJson(JsonResponse{
-		Code:    code,
-		Message: message,
-		Data:    responseData,
-	})
+func Json(r *ghttp.Request, data interface{}) {
+	err := r.Response.WriteJson(data)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -30,6 +22,19 @@ func Json(r *ghttp.Request, code int, message string, data ...interface{}) {
 
 // 返回JSON数据并退出当前HTTP执行函数。
 func JsonExit(r *ghttp.Request, err int, msg string, data ...interface{}) {
-	Json(r, err, msg, data...)
+	responseData := interface{}(nil)
+	if len(data) > 0 {
+		responseData = data[0]
+	}
+	e := r.Response.WriteJson(JsonResponse{
+		Code:    err,
+		Message: msg,
+		Data:    responseData,
+	})
+
+	if e != nil {
+		fmt.Println(e.Error())
+	}
+
 	r.Exit()
 }
