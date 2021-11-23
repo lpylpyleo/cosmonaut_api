@@ -10,3 +10,8 @@ type PostServiceCreateReq struct {
 	Content  string `v:"required"`
 	IsPublic bool
 }
+
+type PostProfile struct {
+	*Post
+	*Profile
+}

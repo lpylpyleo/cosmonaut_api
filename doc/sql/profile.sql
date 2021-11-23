@@ -2,7 +2,7 @@ create table if not exists "profile"
 (
     id         bigserial primary key not null unique,
     uid        varchar(8)            not null,
-    avatar     varchar(127)          null,
+    avatar     varchar(255)          null,
     nickname   varchar(20)           null,
     created_at timestamp                  default now(),
     updated_at timestamp                  default now(),

@@ -14,12 +14,12 @@ func (s postService) Create(req *model.PostServiceCreateReq) error {
 	return err
 }
 
-func (s postService) Get() (*[]model.Post, error) {
-	r, err := dao.Post.All()
+func (s postService) Get() (*[]model.PostProfile, error) {
+	r, err := dao.Post.LeftJoin("profile", `"profile"."uid" = "post"."creater"`).All()
 	if err != nil {
 		return nil, err
 	}
-	var posts []model.Post
+	var posts []model.PostProfile
 	err = r.Structs(&posts)
 	return &posts, err
 }

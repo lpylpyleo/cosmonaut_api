@@ -8,6 +8,7 @@ import (
 	"cosmonaut_api/library/util"
 	"errors"
 	"fmt"
+
 	"github.com/gogf/gf/frame/g"
 )
 
@@ -20,6 +21,14 @@ func (s userService) SignUp(r *model.UserServiceSignUpReq) error {
 		return fmt.Errorf("账号 %s 已经存在", r.Email)
 	}
 	_, err := dao.User.Insert(r)
+	if err != nil {
+		return err
+	}
+	_, err = dao.Profile.Insert(g.Map{
+		dao.Profile.C.Uid:      r.Id,
+		dao.Profile.C.Nickname: r.Email,
+		dao.Profile.C.Avatar:   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDuJpx3uTV_Fz0dzAZtPScNKukR6RWWjbJX4HIaAAD-0zcJUao-rW5yKs9p5dQJZfPEuI&usqp=CAU",
+	})
 	if err != nil {
 		return err
 	}
@@ -46,15 +55,10 @@ func (s *userService) SignIn(ctx context.Context, email, password string) error 
 		return err
 	}
 
-	nickname := ""
-	if profile != nil {
-		nickname = profile.Nickname
-	}
-
 	Context.SetUser(ctx, &model.ContextUser{
 		Id:          user.Id,
 		Email:       user.Email,
-		DisplayName: nickname,
+		DisplayName: profile.Nickname,
 	})
 	return nil
 }

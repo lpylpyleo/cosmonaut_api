@@ -37,9 +37,7 @@ func (a postApi) Create(r *ghttp.Request) {
 
 func (a postApi) Get(r *ghttp.Request) {
 	list, err := service.Post.Get()
-	if err != nil {
-		response.JsonExit(r, response.CODE_UNKNOWN, err.Error())
-	}
+	response.ExitIfErr(r, err)
 
 	response.Json(r, &list)
 }

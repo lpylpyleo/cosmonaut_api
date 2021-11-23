@@ -38,3 +38,9 @@ func JsonExit(r *ghttp.Request, err int, msg string, data ...interface{}) {
 
 	r.Exit()
 }
+
+func ExitIfErr(r *ghttp.Request, err error) {
+	if err != nil {
+		JsonExit(r, CODE_UNKNOWN, err.Error())
+	}
+}
