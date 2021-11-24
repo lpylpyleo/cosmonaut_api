@@ -10,16 +10,21 @@ var Post = postService{}
 type postService struct{}
 
 func (s postService) Create(req *model.PostServiceCreateReq) error {
-	_, err := dao.Post.Insert(req)
+	_, err := dao.Post.FieldsEx(`"is_public"`).Insert(req)
 	return err
 }
 
-func (s postService) Get() (*[]model.PostProfile, error) {
-	r, err := dao.Post.LeftJoin("profile", `"profile"."uid" = "post"."creater"`).All()
+func (s postService) GetAll() (*[]model.PostResponse, error) {
+	profile := dao.Profile.GetFieldsExStr(`id,created_at,updated_at,deleted_at`, `"profile".`)
+	post := dao.Post.GetFieldsStr(`"post".`)
+	r, err := dao.Post.Fields(post+","+profile).
+		LeftJoin("profile", `"profile"."uid" = "post"."creator"`).
+		OrderDesc(`"post"."id"`).
+		All(`"post"."is_public"=true`)
 	if err != nil {
 		return nil, err
 	}
-	var posts []model.PostProfile
+	var posts []model.PostResponse
 	err = r.Structs(&posts)
 	return &posts, err
 }

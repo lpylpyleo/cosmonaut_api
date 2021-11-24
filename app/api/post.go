@@ -23,7 +23,7 @@ func (a postApi) Create(r *ghttp.Request) {
 	user := service.Session.GetUser(r.Context())
 
 	serviceReq = &model.PostServiceCreateReq{
-		Creater:  user.Id,
+		Creator:  user.Id,
 		Content:  apiReq.Content,
 		IsPublic: apiReq.IsPublic,
 	}
@@ -36,7 +36,7 @@ func (a postApi) Create(r *ghttp.Request) {
 }
 
 func (a postApi) Get(r *ghttp.Request) {
-	list, err := service.Post.Get()
+	list, err := service.Post.GetAll()
 	response.ExitIfErr(r, err)
 
 	response.Json(r, &list)

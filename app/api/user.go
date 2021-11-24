@@ -5,10 +5,11 @@ import (
 	"cosmonaut_api/app/service"
 	"cosmonaut_api/library/response"
 	"cosmonaut_api/library/util"
-	"github.com/gogf/gf/net/ghttp"
-	"github.com/gogf/gf/util/gconv"
 	"net/http"
 	"strings"
+
+	"github.com/gogf/gf/net/ghttp"
+	"github.com/gogf/gf/util/gconv"
 )
 
 var User = userApi{}
@@ -55,6 +56,7 @@ func (a userApi) SignIn(r *ghttp.Request) {
 		response.JsonExit(r, response.CODE_UNKNOWN, err.Error())
 	}
 	if err := service.User.SignIn(r.Context(), serviceReq.Email, serviceReq.Password); err != nil {
+		r.Response.Status = http.StatusNotFound
 		response.JsonExit(r, response.CODE_UNKNOWN, err.Error())
 	}
 	r.Exit()

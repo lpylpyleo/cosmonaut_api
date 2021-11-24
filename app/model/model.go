@@ -22,11 +22,10 @@ type EmailConfirm struct {
 // Post is the golang structure for table post.
 type Post struct {
 	Id        int64       `orm:"id"         json:"id"`        //
-	Creater   string      `orm:"creater"    json:"creater"`   //
+	Creator   string      `orm:"creator"    json:"creator"`   //
 	Title     string      `orm:"title"      json:"title"`     //
 	Content   string      `orm:"content"    json:"content"`   //
 	IsPublic  bool        `orm:"is_public"  json:"isPublic"`  //
-	Deleted   bool        `orm:"deleted"    json:"deleted"`   //
 	CreatedAt *gtime.Time `orm:"created_at" json:"createdAt"` //
 	UpdatedAt *gtime.Time `orm:"updated_at" json:"updatedAt"` //
 	DeletedAt *gtime.Time `orm:"deleted_at" json:"deletedAt"` //

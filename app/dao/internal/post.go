@@ -21,11 +21,10 @@ type PostDao struct {
 // PostColumns defines and stores column names for table post.
 type postColumns struct {
 	Id        string //
-	Creater   string //
+	Creator   string //
 	Title     string //
 	Content   string //
 	IsPublic  string //
-	Deleted   string //
 	CreatedAt string //
 	UpdatedAt string //
 	DeletedAt string //
@@ -35,11 +34,10 @@ type postColumns struct {
 func NewPostDao() *PostDao {
 	columns := postColumns{
 		Id:        "id",
-		Creater:   "creater",
+		Creator:   "creator",
 		Title:     "title",
 		Content:   "content",
 		IsPublic:  "is_public",
-		Deleted:   "deleted",
 		CreatedAt: "created_at",
 		UpdatedAt: "updated_at",
 		DeletedAt: "deleted_at",
