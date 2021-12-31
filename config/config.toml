@@ -2,12 +2,12 @@
 [server]
 	Address     = ":8199"
 	ServerRoot  = "public"
-	ServerAgent = "gf-app"
-	LogPath     = "/tmp/log/gf-app/server"
+	ServerAgent = "cosmonaut"
+	LogPath     = "/tmp/log/cosmonaut/server"
 
 # Logger.
 [logger]
-    Path        = "/tmp/log/gf-app"
+    Path        = "/tmp/log/cosmonaut"
     Level       = "all"
     Stdout      = true
 
@@ -25,7 +25,7 @@
     debug = true
     # Database logger.
     [database.logger]
-        Path   = "/tmp/log/gf-app/sql"
+        Path   = "/tmp/log/cosmonaut/sql"
         Level  = "all"
         Stdout = true
 

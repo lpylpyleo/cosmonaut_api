@@ -10,7 +10,7 @@ var Post = postService{}
 type postService struct{}
 
 func (s postService) Create(req *model.PostServiceCreateReq) error {
-	_, err := dao.Post.FieldsEx(`"is_public"`).Insert(req)
+	_, err := dao.Post.Insert(req)
 	return err
 }
 

@@ -24,6 +24,8 @@ type profileColumns struct {
 	Uid       string //
 	Avatar    string //
 	Nickname  string //
+	Gender    string //
+	Motto     string //
 	CreatedAt string //
 	UpdatedAt string //
 	DeletedAt string //
@@ -36,6 +38,8 @@ func NewProfileDao() *ProfileDao {
 		Uid:       "uid",
 		Avatar:    "avatar",
 		Nickname:  "nickname",
+		Gender:    "gender",
+		Motto:     "motto",
 		CreatedAt: "created_at",
 		UpdatedAt: "updated_at",
 		DeletedAt: "deleted_at",

@@ -37,6 +37,8 @@ type Profile struct {
 	Uid       string      `orm:"uid"        json:"uid"`       //
 	Avatar    string      `orm:"avatar"     json:"avatar"`    //
 	Nickname  string      `orm:"nickname"   json:"nickname"`  //
+	Gender    string      `orm:"gender"     json:"gender"`    //
+	Motto     string      `orm:"motto"      json:"motto"`     //
 	CreatedAt *gtime.Time `orm:"created_at" json:"createdAt"` //
 	UpdatedAt *gtime.Time `orm:"updated_at" json:"updatedAt"` //
 	DeletedAt *gtime.Time `orm:"deleted_at" json:"deletedAt"` //
