@@ -1,23 +1,27 @@
-create table if not exists "profile"
-(
-    id         bigserial primary key not null unique,
-    uid        varchar(8)            not null,
-    avatar     varchar(255)          null,
-    nickname   varchar(20)           null,
-    gender     varchar(1)            not null default 'f',
-    motto      varchar(255)          null,
-    created_at timestamp                  default now(),
-    updated_at timestamp                  default now(),
-    deleted_at timestamp             null default null,
-    foreign key (uid) references public."user" (id)
+CREATE TABLE IF NOT EXISTS "profile" (
+    id bigserial PRIMARY KEY NOT NULL UNIQUE,
+    uid varchar(8) NOT NULL,
+    avatar varchar(255) NULL,
+    nickname varchar(20) NULL,
+    gender char(1) NOT NULL DEFAULT 'f',
+    motto varchar(255) NULL,
+    created_at timestamp DEFAULT now(),
+    updated_at timestamp DEFAULT now(),
+    deleted_at timestamp NULL DEFAULT NULL,
+    FOREIGN KEY (uid) REFERENCES public."user" (id)
 );
 
-comment on column "profile".id is '主键ID';
-comment on column "profile".uid is '用户uuid';
-comment on column "profile".avatar is '头像url';
-comment on column "profile".nickname is '昵称';
-comment on column "profile".gender is '性别 m/f';
-comment on column "profile".motto is '签名';
+COMMENT ON COLUMN "profile".id IS '主键ID';
 
-alter table "profile" owner to postgres;
+COMMENT ON COLUMN "profile".uid IS '用户uuid';
+
+COMMENT ON COLUMN "profile".avatar IS '头像url';
+
+COMMENT ON COLUMN "profile".nickname IS '昵称';
+
+COMMENT ON COLUMN "profile".gender IS '性别 m/f';
+
+COMMENT ON COLUMN "profile".motto IS '签名';
+
+ALTER TABLE "profile" OWNER TO postgres;
 

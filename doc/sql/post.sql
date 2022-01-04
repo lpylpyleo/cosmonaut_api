@@ -1,19 +1,28 @@
-create table if not exists post
-(
-    id         bigserial primary key not null,
-    creator    varchar(8)           not null,
-    title      varchar(50)           null,
-    content    text                  null,
-    is_public  bool                       default true not null,
-    created_at timestamp                  default now(),
-    updated_at timestamp                  default now(),
-    deleted_at timestamp             null default null,
-    foreign key (creator) references public."user" (id)
+CREATE TABLE IF NOT EXISTS post (
+    id bigserial PRIMARY KEY NOT NULL,
+    creator varchar(8) NOT NULL,
+    title varchar(50) NULL,
+    content text NULL,
+    comment_count integer DEFAULT 0 NOT NULL,
+    like_count integer DEFAULT 0 NOT NULL,
+    is_public bool DEFAULT TRUE NOT NULL,
+    created_at timestamp DEFAULT now(),
+    updated_at timestamp DEFAULT now(),
+    deleted_at timestamp NULL DEFAULT NULL,
+    FOREIGN KEY (creator) REFERENCES public."user" (id)
 );
 
-comment on column post.id is '主键ID';
-comment on column post.creator is '用户uuid';
-comment on column post.title is '标题';
-comment on column post.content is '正文';
+COMMENT ON COLUMN post.id IS '主键ID';
 
-alter table post owner to postgres;
+COMMENT ON COLUMN post.creator IS '用户uuid';
+
+COMMENT ON COLUMN post.title IS '标题';
+
+COMMENT ON COLUMN post.content IS '正文';
+
+COMMENT ON COLUMN post.comment_count IS '评论数';
+
+COMMENT ON COLUMN post.like_count IS '点赞数';
+
+ALTER TABLE post OWNER TO postgres;
+

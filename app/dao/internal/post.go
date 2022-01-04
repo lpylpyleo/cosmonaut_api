@@ -20,27 +20,31 @@ type PostDao struct {
 
 // PostColumns defines and stores column names for table post.
 type postColumns struct {
-	Id        string //
-	Creator   string //
-	Title     string //
-	Content   string //
-	IsPublic  string //
-	CreatedAt string //
-	UpdatedAt string //
-	DeletedAt string //
+	Id           string //
+	Creator      string //
+	Title        string //
+	Content      string //
+	CommentCount string //
+	LikeCount    string //
+	IsPublic     string //
+	CreatedAt    string //
+	UpdatedAt    string //
+	DeletedAt    string //
 }
 
 // NewPostDao creates and returns a new DAO object for table data access.
 func NewPostDao() *PostDao {
 	columns := postColumns{
-		Id:        "id",
-		Creator:   "creator",
-		Title:     "title",
-		Content:   "content",
-		IsPublic:  "is_public",
-		CreatedAt: "created_at",
-		UpdatedAt: "updated_at",
-		DeletedAt: "deleted_at",
+		Id:           "id",
+		Creator:      "creator",
+		Title:        "title",
+		Content:      "content",
+		CommentCount: "comment_count",
+		LikeCount:    "like_count",
+		IsPublic:     "is_public",
+		CreatedAt:    "created_at",
+		UpdatedAt:    "updated_at",
+		DeletedAt:    "deleted_at",
 	}
 	return &PostDao{
 		C:     columns,

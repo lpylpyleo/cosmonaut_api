@@ -27,5 +27,6 @@ func init() {
 		group.POST("/profile/edit", api.Profile.Edit)
 		group.POST("/post", api.Post.Create)
 		group.GET("/post", api.Post.Get)
+		group.POST("/post/like", api.Post.Like)
 	})
 }

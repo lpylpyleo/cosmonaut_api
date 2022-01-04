@@ -29,10 +29,14 @@ func (s userService) SignUp(r *model.UserServiceSignUpReq) error {
 		dao.Profile.C.Nickname: r.Email,
 		dao.Profile.C.Avatar:   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDuJpx3uTV_Fz0dzAZtPScNKukR6RWWjbJX4HIaAAD-0zcJUao-rW5yKs9p5dQJZfPEuI&usqp=CAU",
 	})
-	if err != nil {
-		return err
-	}
-	return s.sendMail(r.Email)
+
+	return err
+	// TODO: enable mail confirmation
+
+	// if err != nil {
+	// 	return err
+	// }
+	// return s.sendMail(r.Email)
 }
 
 // SignIn 用户登录，成功返回用户信息，否则返回nil; passport应当会md5值字符串

@@ -13,6 +13,10 @@ type PostServiceCreateReq struct {
 	IsPublic bool
 }
 
+type PostServiceGetReq struct {
+	Uid string `v:"required"` //请求者uid
+}
+
 type PostResponse struct {
 	Id        int64       `orm:"id"         json:"id"`        //
 	Creator   string      `orm:"creator"    json:"creator"`   //
@@ -27,4 +31,5 @@ type PostResponse struct {
 	Uid      string `orm:"uid"        json:"uid"`      //
 	Avatar   string `orm:"avatar"     json:"avatar"`   //
 	Nickname string `orm:"nickname"   json:"nickname"` //
+	Liked    bool   `json:"liked"`                     //
 }

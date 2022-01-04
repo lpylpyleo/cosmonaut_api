@@ -21,14 +21,16 @@ type EmailConfirm struct {
 
 // Post is the golang structure for table post.
 type Post struct {
-	Id        int64       `orm:"id"         json:"id"`        //
-	Creator   string      `orm:"creator"    json:"creator"`   //
-	Title     string      `orm:"title"      json:"title"`     //
-	Content   string      `orm:"content"    json:"content"`   //
-	IsPublic  bool        `orm:"is_public"  json:"isPublic"`  //
-	CreatedAt *gtime.Time `orm:"created_at" json:"createdAt"` //
-	UpdatedAt *gtime.Time `orm:"updated_at" json:"updatedAt"` //
-	DeletedAt *gtime.Time `orm:"deleted_at" json:"deletedAt"` //
+	Id           int64       `orm:"id"            json:"id"`           //
+	Creator      string      `orm:"creator"       json:"creator"`      //
+	Title        string      `orm:"title"         json:"title"`        //
+	Content      string      `orm:"content"       json:"content"`      //
+	CommentCount int64       `orm:"comment_count" json:"commentCount"` //
+	LikeCount    int64       `orm:"like_count"    json:"likeCount"`    //
+	IsPublic     bool        `orm:"is_public"     json:"isPublic"`     //
+	CreatedAt    *gtime.Time `orm:"created_at"    json:"createdAt"`    //
+	UpdatedAt    *gtime.Time `orm:"updated_at"    json:"updatedAt"`    //
+	DeletedAt    *gtime.Time `orm:"deleted_at"    json:"deletedAt"`    //
 }
 
 // Profile is the golang structure for table profile.
@@ -44,6 +46,11 @@ type Profile struct {
 	DeletedAt *gtime.Time `orm:"deleted_at" json:"deletedAt"` //
 }
 
+// TE is the golang structure for table t_e.
+type TE struct {
+	Docs string `orm:"docs" json:"docs"` //
+}
+
 // User is the golang structure for table user.
 type User struct {
 	Id        string      `orm:"id"         json:"id"`        //
@@ -53,6 +60,16 @@ type User struct {
 	Role      string      `orm:"role"       json:"role"`      //
 	Disabled  bool        `orm:"disabled"   json:"disabled"`  //
 	Password  string      `orm:"password"   json:"password"`  //
+	CreatedAt *gtime.Time `orm:"created_at" json:"createdAt"` //
+	UpdatedAt *gtime.Time `orm:"updated_at" json:"updatedAt"` //
+	DeletedAt *gtime.Time `orm:"deleted_at" json:"deletedAt"` //
+}
+
+// UserPostLike is the golang structure for table user_post_like.
+type UserPostLike struct {
+	Id        int64       `orm:"id"         json:"id"`        //
+	Uid       string      `orm:"uid"        json:"uid"`       //
+	Pid       int64       `orm:"pid"        json:"pid"`       //
 	CreatedAt *gtime.Time `orm:"created_at" json:"createdAt"` //
 	UpdatedAt *gtime.Time `orm:"updated_at" json:"updatedAt"` //
 	DeletedAt *gtime.Time `orm:"deleted_at" json:"deletedAt"` //

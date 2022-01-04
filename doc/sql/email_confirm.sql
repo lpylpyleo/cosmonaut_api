@@ -1,19 +1,23 @@
-create table if not exists "email_confirm"
-(
-    id           bigserial primary key not null unique,
-    uid          varchar(8)            not null,
-    email        varchar(50)           null,
-    token       varchar(127)          null,
-    confirmed_at timestamp             null,
-    created_at   timestamp default now(),
-    updated_at   timestamp default now(),
-    foreign key (uid) references public."user" (id)
+CREATE TABLE IF NOT EXISTS "email_confirm" (
+    id bigserial PRIMARY KEY NOT NULL UNIQUE,
+    uid varchar(8) NOT NULL,
+    email varchar(50) NULL,
+    token varchar(127) NULL,
+    confirmed_at timestamp NULL,
+    created_at timestamp DEFAULT now(),
+    updated_at timestamp DEFAULT now(),
+    FOREIGN KEY (uid) REFERENCES public."user" (id)
 );
 
-comment on column "email_confirm".id is '主键ID';
-comment on column "email_confirm".uid is '用户uuid';
-comment on column "email_confirm".email is '用户邮箱';
-comment on column "email_confirm".token is '一次性token';
-comment on column "email_confirm".confirmed_at is '确认时间';
+COMMENT ON COLUMN "email_confirm".id IS '主键ID';
 
-alter table "email_confirm" owner to postgres;
+COMMENT ON COLUMN "email_confirm".uid IS '用户uuid';
+
+COMMENT ON COLUMN "email_confirm".email IS '用户邮箱';
+
+COMMENT ON COLUMN "email_confirm".token IS '一次性token';
+
+COMMENT ON COLUMN "email_confirm".confirmed_at IS '确认时间';
+
+ALTER TABLE "email_confirm" OWNER TO postgres;
+
