@@ -4,6 +4,7 @@ import (
 	"cosmonaut_api/app/dao"
 	"cosmonaut_api/app/model"
 
+	"github.com/gogf/gf/database/gdb"
 	"github.com/gogf/gf/frame/g"
 )
 
@@ -16,7 +17,7 @@ func (s postService) Create(req *model.PostServiceCreateReq) error {
 	return err
 }
 
-func (s postService) GetAll(req *model.PostServiceGetReq) (*[]model.PostResponse, error) {
+func (s postService) GetAll(req *model.PostServiceGetReq) (gdb.Result, error) {
 	sql := `SELECT DISTINCT ON("po"."id")
     "po"."id",
     "po"."creator",
@@ -51,9 +52,10 @@ ORDER BY
 	if err != nil {
 		return nil, err
 	}
-	var posts []model.PostResponse
-	err = r.Structs(&posts)
-	return &posts, err
+	// var posts []model.PostResponse
+	// err = r.Structs(&posts)
+	// err = gconv.Struct(r, &posts)
+	return r, err
 }
 
 // TODO use redis to cache
@@ -64,9 +66,23 @@ func (s postService) Like(req model.PostServiceLikeReq) error {
 	}
 	if req.IsLike && cnt == 0 {
 		_, err = dao.UserPostLike.Data(g.Map{"uid": req.Uid, "pid": req.Pid}).Insert()
+		if err != nil {
+			return err
+		}
+		_, err = dao.Post.Update(`"like_count" = "like_count" + 1`, `"id" = ?`, req.Pid)
+		if err != nil {
+			return err
+		}
 
 	} else if !req.IsLike && cnt > 0 {
 		_, err = dao.UserPostLike.Delete("uid = ? AND pid = ?", req.Uid, req.Pid)
+		if err != nil {
+			return err
+		}
+		_, err = dao.Post.Update(`"like_count" = "like_count" - 1`, `"id" = ?`, req.Pid)
+		if err != nil {
+			return err
+		}
 	}
 	return err
 }

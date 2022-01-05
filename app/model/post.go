@@ -18,12 +18,13 @@ type PostServiceGetReq struct {
 }
 
 type PostResponse struct {
-	Id        int64       `orm:"id"         json:"id"`        //
-	Creator   string      `orm:"creator"    json:"creator"`   //
-	Title     string      `orm:"title"      json:"title"`     //
-	Content   string      `orm:"content"    json:"content"`   //
-	IsPublic  bool        `orm:"is_public"  json:"isPublic"`  //
-	Deleted   bool        `orm:"deleted"    json:"deleted"`   //
+	Id       int64  `orm:"id"         json:"id"`       //
+	Creator  string `orm:"creator"    json:"creator"`  //
+	Title    string `orm:"title"      json:"title"`    //
+	Content  string `orm:"content"    json:"content"`  //
+	IsPublic bool   `orm:"is_public"  json:"isPublic"` //
+	Liked    bool   `json:"liked"`                     //
+
 	CreatedAt *gtime.Time `orm:"created_at" json:"createdAt"` //
 	UpdatedAt *gtime.Time `orm:"updated_at" json:"updatedAt"` //
 	DeletedAt *gtime.Time `orm:"deleted_at" json:"deletedAt"` //
@@ -31,5 +32,8 @@ type PostResponse struct {
 	Uid      string `orm:"uid"        json:"uid"`      //
 	Avatar   string `orm:"avatar"     json:"avatar"`   //
 	Nickname string `orm:"nickname"   json:"nickname"` //
-	Liked    bool   `json:"liked"`                     //
+
+	T struct {
+		ID int
+	}
 }
