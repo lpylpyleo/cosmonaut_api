@@ -13,8 +13,17 @@ type PostServiceCreateReq struct {
 	IsPublic bool
 }
 
-type PostServiceGetReq struct {
-	Uid string `v:"required"` //请求者uid
+type PostApiGetOneReq struct {
+	Id int `v:"required"` // 帖子id
+}
+
+type PostServiceGetOneReq struct {
+	Uid string `v:"required"` // 请求者uid
+	Id  int    `v:"required"` // 帖子id
+}
+
+type PostServiceGetAllReq struct {
+	Uid string `v:"required"` // 请求者uid
 }
 
 type PostResponse struct {
@@ -32,8 +41,4 @@ type PostResponse struct {
 	Uid      string `orm:"uid"        json:"uid"`      //
 	Avatar   string `orm:"avatar"     json:"avatar"`   //
 	Nickname string `orm:"nickname"   json:"nickname"` //
-
-	T struct {
-		ID int
-	}
 }

@@ -4,6 +4,7 @@ import (
 	"cosmonaut_api/app/model"
 	"cosmonaut_api/app/service"
 	"cosmonaut_api/library/response"
+	"strconv"
 
 	"github.com/gogf/gf/net/ghttp"
 )
@@ -35,9 +36,20 @@ func (a postApi) Create(r *ghttp.Request) {
 	r.Exit()
 }
 
-func (a postApi) Get(r *ghttp.Request) {
+func (a postApi) GetOne(r *ghttp.Request) {
 	user := service.Session.GetUser(r.Context())
-	list, err := service.Post.GetAll(&model.PostServiceGetReq{Uid: user.Id})
+	id, err := strconv.Atoi(r.Get("id").(string))
+	if err != nil {
+		response.JsonExit(r, response.CODE_PARSE_FORM_ERROR, err.Error())
+	}
+	p, err := service.Post.GetOne(&model.PostServiceGetOneReq{Uid: user.Id, Id: id})
+	response.ExitIfErr(r, err)
+	response.Json(r, &p)
+}
+
+func (a postApi) GetAll(r *ghttp.Request) {
+	user := service.Session.GetUser(r.Context())
+	list, err := service.Post.GetAll(&model.PostServiceGetAllReq{Uid: user.Id})
 	response.ExitIfErr(r, err)
 
 	response.Json(r, &list)
@@ -60,6 +72,6 @@ func (a postApi) Like(r *ghttp.Request) {
 		IsLike: apiReq.IsLike,
 	}
 
-	err := service.Post.Like(*serviceReq)
+	err := service.Post.Like(serviceReq)
 	response.ExitIfErr(r, err)
 }
